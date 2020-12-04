@@ -1,0 +1,16 @@
+.wrapper {
+    background: linear-gradient(0.15turn, #173045, #17445f, #1b3448);
+}
+
+.wrapper__inner {
+    width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-gap: 10px;
+
+    grid-template-areas: 
+        "header header"
+        "nav content";
+}

@@ -1,0 +1,16 @@
+.content {
+    grid-area: content;
+    border: 1px solid #000;
+    /* background-image: url(https://p.bigstockphoto.com/GeFvQkBbSLaMdpKXF1Zv_bigstock-Aerial-View-Of-Blue-Lakes-And--227291596.jpg);
+    background-size: 100% 250px; */
+}
+
+.content__wallpaper img{
+    width: 100%;
+    height: 240px;
+}
+
+.content__avatar img {
+    width: 180px;
+    border-radius: 100px;
+}

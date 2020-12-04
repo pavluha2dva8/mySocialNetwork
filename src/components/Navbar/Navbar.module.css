@@ -1,0 +1,14 @@
+.nav {
+    grid-area: nav;
+
+    border: 5px solid #333;
+}
+
+.nav__list {
+    list-style-type: none;
+}
+
+.nav__item {
+    color: #fff;
+    text-decoration: none;
+}

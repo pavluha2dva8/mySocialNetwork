@@ -13,8 +13,8 @@ const App = () => {
     return (
         <BrowserRouter>
             <div className='wrapper'>
+            <Header />
                 <div className='wrapper__inner'>
-                    <Header />
                     <Navbar />
                     <div className='inner__content'>
                         <Route path='/profile' component={Profile} />

@@ -1,0 +1,9 @@
+.content__wallpaper img{
+    width: 100%;
+    height: 240px;
+}
+
+.content__avatar img {
+    width: 180px;
+    border-radius: 100px;
+}

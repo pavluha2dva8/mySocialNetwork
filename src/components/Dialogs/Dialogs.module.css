@@ -9,4 +9,14 @@
 
 .messages {
     padding: 10px;
+    color: #fff;
+}
+
+.dialogsItem {
+    text-decoration: none;
+    color: blueviolet;
+}
+
+.dialogsList .active {
+    color: #adff2f;
 }

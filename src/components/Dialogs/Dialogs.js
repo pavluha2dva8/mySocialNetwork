@@ -3,6 +3,7 @@ import style from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogsItem'
 
+/*
 let dialogsData = [
     { id: '01', name: 'Pavl' },
     { id: '02', name: 'Valeria' },
@@ -18,8 +19,9 @@ let messagesData = [
     { id: '04', message: 'HiHi' },
     { id: '05', message: 'HiHo HiHiHo' }
 ]
+*/
 
-const Dialogs = () => {
+const Dialogs = (props) => {
 
 
     /*
@@ -31,8 +33,8 @@ const Dialogs = () => {
             <DialogItem name={dialogsData[4].name} id={dialogsData[4].id} />
         ]
     */
-    let dialogsElements = dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
-    let messagesElements = messagesData.map(messages => <Message message={messages.message} />)
+    let dialogsElements = props.dialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
+    let messagesElements = props.messagesData.map(messages => <Message message={messages.message} />)
 
     return (
         <div className={style.dialogs}>

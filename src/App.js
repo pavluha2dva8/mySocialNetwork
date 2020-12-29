@@ -18,8 +18,8 @@ const App = (props) => {
                 <div className='wrapper__inner'>
                     <Navbar />
                     <div className='inner__content'>
-                        <Route path='/profile' render={ () => <Profile postsData={props.postsData} />} />
-                        <Route path='/dialogs' render={ () => <Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData} />} />
+                        <Route path='/profile' render={ () => <Profile state={props.state.profilePage} />} />
+                        <Route path='/dialogs' render={ () => <Dialogs state={props.state.dialogsPage} />} />
                         <Route exact path='/news' component={News} />
                         <Route exact path='/music' component={Music} />
                         <Route path='/settings' component={Settings} />

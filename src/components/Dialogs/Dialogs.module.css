@@ -1,10 +1,6 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 0.15fr 1fr;
-}
-
-.dialogsList {
-    padding: 10px;
+    grid-template-columns: 0.30fr 1fr;
 }
 
 .messages {
@@ -13,10 +9,53 @@
 }
 
 .dialogsItem {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 0 0 5px;
+}
+
+.dialogsItem:hover {
+    background: linear-gradient(0.15turn, #1d3b54, #1d5272, #24435c);
+    cursor: pointer;
+    border-radius: 35px;
+}
+
+.dialogsLink {
     text-decoration: none;
     color: blueviolet;
+    padding: 15px 0px 15px 5px;
+}
+
+.dialogsImg {
+    width: 50px;
+    border-radius: 30px;
 }
 
 .dialogsList .active {
     color: #adff2f;
+}
+
+.messages {
+    background: linear-gradient(#171a21,#443f3f);
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    height: 34px;
+}
+
+.messageItem {
+    background: rgb(95, 91, 91);
+    width: fit-content;
+    max-width: 80%;
+    padding: 5px 10px 5px 10px;
+    border-radius: 11px;
+    margin: 5px auto 5px 5px;
+}
+
+.messageImage {
+    width: 30px;
+    border-radius: 15px;
 }

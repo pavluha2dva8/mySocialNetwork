@@ -1,12 +1,13 @@
 .wrapper {
     background: linear-gradient(0.15turn, #173045, #17445f, #1b3448);
+    min-height: 100vh;
 }
 
 .wrapper__inner {
     width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: 200px 1fr;
     grid-template-rows: 1fr;
     grid-gap: 10px;
 

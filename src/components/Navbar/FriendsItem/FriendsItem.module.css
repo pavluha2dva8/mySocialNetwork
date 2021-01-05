@@ -1,0 +1,23 @@
+.itemFriends_image {
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+}
+
+.friend {
+    width: 50px;
+    display: block;
+    /* margin: 5px auto; */
+    padding: 5px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+}
+
+.friend:hover {
+    background: linear-gradient(90deg, #171a21, #443f3f);
+    border-radius: 30px;
+}

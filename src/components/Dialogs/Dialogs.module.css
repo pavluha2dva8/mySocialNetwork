@@ -4,6 +4,7 @@
 }
 
 .messages {
+    position: relative;
     padding: 10px;
     color: #fff;
 }
@@ -58,4 +59,15 @@
 .messageImage {
     width: 30px;
     border-radius: 15px;
+}
+
+.dialogs__textarea {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.dialogs__textarea textarea {
+    width: 95%;
+    resize: none;
 }

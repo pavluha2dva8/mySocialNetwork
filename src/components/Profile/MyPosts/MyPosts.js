@@ -12,22 +12,30 @@ const MyPosts = (props) => {
     */
 
     let newPostElement = React.createRef()
-    
+
     let addPost = () => {
-        let text = newPostElement.current.value
-        alert(text)
+        props.addPost()
+        // newPostElement.current.value = ''
+        
     }
 
     let postsElements = props.posts.map(post => <Post message={post.message} likeCount={post.likeCount} />)
+
+    let onPostChange = () => {
+        let text = newPostElement.current.value
+        props.updateNewPostText(text)
+    }
 
     return (
         <div>
             <h3>Posts</h3>
             <div>
-                <textarea ref={newPostElement} placeholder="What's on your mind?"></textarea>
+                <textarea onChange={onPostChange} ref={newPostElement}
+                    placeholder="What's on your mind?" 
+                    value={props.newPostText} />
             </div>
             <div>
-                <button onClick={ addPost }>Post</button>
+                <button onClick={addPost}>Post</button>
             </div>
             <div className={style.posts}>
                 {postsElements}

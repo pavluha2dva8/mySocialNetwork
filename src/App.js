@@ -13,24 +13,28 @@ import Friends from './components/Friends/Friends';
 const App = (props) => {
 
     return (
-            <div className='wrapper'>
-                <Header />
-                <div className='wrapper__inner'>
-                    <Navbar sideBar={props.state.sideBar} />
-                    <div className='inner__content'>
-                        <Route path='/profile' render={() => <Profile
-                            profilePage={props.state.profilePage}
-                            addPost={props.addPost}
-                            updateNewPostText={props.updateNewPostText}
-                        />} />
-                        <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} />} />
-                        <Route exact path='/news' component={News} />
-                        <Route exact path='/music' component={Music} />
-                        <Route path='/settings' component={Settings} />
-                        <Route path='/friends' component={Friends} />
-                    </div>
+        <div className='wrapper'>
+            <Header />
+            <div className='wrapper__inner'>
+                <Navbar sideBar={props.state.sideBar} />
+                <div className='inner__content'>
+                    <Route path='/profile' render={() => <Profile
+                        profilePage={props.state.profilePage}
+                        addPost={props.addPost}
+                        updateNewPostText={props.updateNewPostText}
+                    />} />
+                    <Route path='/dialogs' render={() => <Dialogs
+                        dialogsPage={props.state.dialogsPage}
+                        addMessage={props.addMessage}
+                        updateNewMessageText={props.updateNewMessageText}
+                    />} />
+                    <Route exact path='/news' component={News} />
+                    <Route exact path='/music' component={Music} />
+                    <Route path='/settings' component={Settings} />
+                    <Route path='/friends' component={Friends} />
                 </div>
             </div>
+        </div>
     )
 }
 

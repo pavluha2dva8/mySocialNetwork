@@ -4,6 +4,12 @@ let rerenderEntireTree = () => {
 }
 */
 
+// actionCreator - type: ...
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const ADD_MESSAGE = 'ADD-MESSAGE'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+
 let store = {
     _state: {
         profilePage: {
@@ -28,7 +34,7 @@ let store = {
                 { id: 4, message: 'HiHi', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
                 { id: 5, message: 'HiHo HiHiHo', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' }
             ],
-            newMessageText: 'hello message'
+            newMessageText: ''
         },
         sideBar: {
             friends: [
@@ -56,7 +62,6 @@ let store = {
             message: this._state.profilePage.newPostText,
             likeCount: '\u2661 0'
         }
-
         this._state.profilePage.posts.push(newPost)
         this._state.profilePage.newPostText = ''
         this._callSubscriber(this._state)
@@ -71,7 +76,6 @@ let store = {
             message: this._state.dialogsPage.newMessageText,
             image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg'
         }
-
         this._state.dialogsPage.messages.push(newMessage)
         this._state.dialogsPage.newMessageText = ''
         this._callSubscriber(this._state)
@@ -94,6 +98,18 @@ let store = {
         }
     }
 }
+
+export const addPostCreator = () => ({ type: ADD_POST })
+
+export const updateNewPostTextCreator = (text) => (
+    { type: UPDATE_NEW_POST_TEXT, newText: text }
+    )
+
+export const sendMessageCreator = () => ({ type: ADD_MESSAGE })
+
+export const onMessageChangeCreator = (text) => (
+    { type: UPDATE_NEW_MESSAGE_TEXT, newText: text }
+    )
 
 window.store = store
 export default store

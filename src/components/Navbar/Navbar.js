@@ -5,7 +5,7 @@ import style from './Navbar.module.css'
 
 const Navbar = (props) => {
 
-    let friendsElements = props.sideBar.friends.map(friends => <FriendsItem id={friends.id} name={friends.name} image={friends.image} />)
+    let friendsElements = props.sidebar.friends.map(friends => <FriendsItem id={friends.id} name={friends.name} image={friends.image} />)
 
     return (
         <nav className={style.nav}>

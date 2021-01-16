@@ -3,12 +3,9 @@ let rerenderEntireTree = () => {
     console.log('state changed')
 }
 */
-
-// actionCreator - type: ...
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+import dialogsReducer from "./dialogs-reducer"
+import profileReducer from "./profile-reducer"
+import sidebarReducer from "./sidebar-reducer"
 
 let store = {
     _state: {
@@ -36,7 +33,7 @@ let store = {
             ],
             newMessageText: ''
         },
-        sideBar: {
+        sidebar: {
             friends: [
                 { id: '001', name: 'Pavl', image: 'https://dthezntil550i.cloudfront.net/kg/latest/kg1802132010216500004834729/1280_960/557d644f-12f3-49e1-bb66-23c16400540d.png' },
                 { id: '002', name: 'Valeria', image: 'https://archilab.online/images/1/123.jpg' },
@@ -54,62 +51,68 @@ let store = {
         this._callSubscriber = observer  // PATTERN observer (наблюдатель) // похож на publisher - subscriber
     },
 
-    // Методи, які змінюють наш state
+    // Методи, які змінюють наш state. Ми розкинули їх по reducer'ам
+    /* 
+        _addPost() {
+            let newPost = {
+                id: 3,
+                message: this._state.profilePage.newPostText,
+                likeCount: '\u2661 0'
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        },
+        _updateNewPostText(newText) {
+            this._state.profilePage.newPostText = newText
+            this._callSubscriber(this._state)
+        },
+        _addMessage() {
+            let newMessage = {
+                id: 6,
+                message: this._state.dialogsPage.newMessageText,
+                image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg'
+            }
+            this._state.dialogsPage.messages.push(newMessage)
+            this._state.dialogsPage.newMessageText = ''
+            this._callSubscriber(this._state)
+    
+        },
+        _updateNewMessageText(newText) {
+            this._state.dialogsPage.newMessageText = newText
+            this._callSubscriber(this._state)
+        },
+    */
 
-    _addPost() {
-        let newPost = {
-            id: 3,
-            message: this._state.profilePage.newPostText,
-            likeCount: '\u2661 0'
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber(this._state)
-    },
-    _updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state)
-    },
-    _addMessage() {
-        let newMessage = {
-            id: 6,
-            message: this._state.dialogsPage.newMessageText,
-            image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg'
-        }
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessageText = ''
-        this._callSubscriber(this._state)
-
-    },
-    _updateNewMessageText(newText) {
-        this._state.dialogsPage.newMessageText = newText
-        this._callSubscriber(this._state)
-    },
     dispatch(action) { // action - це обєкт { type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text }
-        switch (action.type) {
-            case 'ADD-POST': this._addPost()
-                break
-            case 'UPDATE-NEW-POST-TEXT': this._updateNewPostText(action.newText)
-                break
-            case 'ADD-MESSAGE': this._addMessage()
-                break
-            case 'UPDATE-NEW-MESSAGE-TEXT': this._updateNewMessageText(action.newText)
-                break
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._callSubscriber(this._state)
+        
+        // switch case також розкинули по reducer'ам
+        // тобто коли ми діспатчим action
+        // він передає сам action з action:type i кусок стейта
+        // всім reducer'ам.
+        // наприклад profileReducer отримує action i в ролі state this._state.profilePage
+        // ітд. А вже всередині вони обробляють action, кому підходить 
+        // action: type повертає нам новий state і в кінці ф-я dispatch
+        // викликає this._callSubscriber(this._state) з новим стейтом.
+        // switch (action.type) {
+        //      case ADD_POST: this._addPost()
+        //          break
+        //      case UPDATE_NEW_POST_TEXT: this._updateNewPostText(action.newText)
+        //          break
+        //      case ADD_MESSAGE: this._addMessage()
+        //          break
+        //      case UPDATE_NEW_MESSAGE_TEXT: this._updateNewMessageText(action.newText)
+        //          break
+        //  }
+
     }
 }
 
-export const addPostCreator = () => ({ type: ADD_POST })
-
-export const updateNewPostTextCreator = (text) => (
-    { type: UPDATE_NEW_POST_TEXT, newText: text }
-    )
-
-export const sendMessageCreator = () => ({ type: ADD_MESSAGE })
-
-export const onMessageChangeCreator = (text) => (
-    { type: UPDATE_NEW_MESSAGE_TEXT, newText: text }
-    )
 
 window.store = store
 export default store

@@ -16,7 +16,7 @@ const App = (props) => {
         <div className='wrapper'>
             <Header />
             <div className='wrapper__inner'>
-                <Navbar sideBar={props.state.sideBar} />
+                <Navbar sidebar={props.state.sidebar} />
                 <div className='inner__content'>
                     <Route path='/profile' render={() => <Profile
                         profilePage={props.state.profilePage}

@@ -1,7 +1,18 @@
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-const profileReducer = (state, action) => {
+// одноразовий обєкт для стартової ініціалізації
+// якщо в profileReducer не прийде state
+// по умолчанію він буде (state = initialState, action)
+let initialState = {
+    posts: [
+        { id: 1, message: 'Hi, how are you?', likeCount: '\u2661 10' },
+        { id: 2, message: "It's my first post", likeCount: '\u2661 99' }
+    ],
+    newPostText: 'pavluha_bc'
+}
+
+const profileReducer = (state = initialState, action) => {
 
     const addPost = () => {
         let newPost = {

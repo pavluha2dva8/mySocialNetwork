@@ -4,7 +4,7 @@ import FriendsItem from './FriendsItem/FriendsItem'
 import style from './Navbar.module.css'
 
 const Navbar = (props) => {
-
+    
     let friendsElements = props.sidebar.friends.map(friends => <FriendsItem id={friends.id} name={friends.name} image={friends.image} />)
 
     return (

@@ -13,17 +13,17 @@ const Dialogs = (props) => {
 
     // let newMessageElement = React.createRef()
 
-    let sendMessage = () => {
-        props.dispatch(sendMessageCreator())
-        // props.addMessage()
+    let onSendMessageClick = () => {
+        // props.dispatch(sendMessageCreator())
+        props.sendMessage()
     }
 
     let onMessageChange = (event) => {
         // let text = newMessageElement.current.value
         let text = event.target.value // value можна получить так, або так як зверху
         // або в MyPosts за допомогою React.createRef()
-        props.dispatch(onMessageChangeCreator(text))
-        // props.updateNewMessageText(text)
+        // props.dispatch(onMessageChangeCreator(text))
+        props.updateNewMessageText(text)
     }
 
     return (
@@ -38,7 +38,7 @@ const Dialogs = (props) => {
                         // ref={newMessageElement}
                         placeholder='Aa'
                         value={newMessageText} />
-                    <button onClick={sendMessage}>Send</button>
+                    <button onClick={onSendMessageClick}>Send</button>
                 </div>
             </div>
         </div>

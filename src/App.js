@@ -9,6 +9,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import Friends from './components/Friends/Friends';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const App = (props) => {
 
@@ -18,18 +19,18 @@ const App = (props) => {
             <div className='wrapper__inner'>
                 <Navbar sidebar={props.state.sidebar} />
                 <div className='inner__content'>
-                    <Route path='/profile' render={() => <Profile
-                        profilePage={props.state.profilePage}
-                        dispatch={props.dispatch}
-                    // addPost={props.addPost}
-                    // updateNewPostText={props.updateNewPostText}
-                    />} />
-                    <Route path='/dialogs' render={() => <Dialogs
-                        dialogsPage={props.state.dialogsPage}
-                        dispatch={props.dispatch}
-                    // addMessage={props.addMessage}
-                    // updateNewMessageText={props.updateNewMessageText}
-                    />} />
+                    <Route path='/profile'
+                        render={() => <Profile
+                            store={props.store}
+                        // addPost={props.addPost}
+                        // updateNewPostText={props.updateNewPostText}
+                        />} />
+                    <Route path='/dialogs'
+                        render={() => <DialogsContainer
+                            store={props.store}
+                        // addMessage={props.addMessage}
+                        // updateNewMessageText={props.updateNewMessageText}
+                        />} />
                     <Route exact path='/news' component={News} />
                     <Route exact path='/music' component={Music} />
                     <Route path='/settings' component={Settings} />

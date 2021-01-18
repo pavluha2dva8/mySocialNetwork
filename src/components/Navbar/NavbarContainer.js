@@ -1,6 +1,8 @@
 import React from 'react'
-import StoreContext from '../../StoreContext'
+import { connect } from 'react-redux';
 import Navbar from './Navbar';
+
+/* 
 
 const NavbarContainer = (props) => {
     return (
@@ -15,5 +17,14 @@ const NavbarContainer = (props) => {
         </StoreContext.Consumer>
     )
 }
+
+*/
+
+let mapStateToProps = (state) => {
+    return {
+        sidebar: state.sidebar
+    }
+}
+const NavbarContainer = connect(mapStateToProps)(Navbar)
 
 export default NavbarContainer

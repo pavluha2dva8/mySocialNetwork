@@ -1,8 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import MyPosts from './MyPosts'
 import { addPostCreator, updateNewPostTextCreator } from '../../../redux/profile-reducer'
-import StoreContext from '../../../StoreContext'
 
+/* 
 const MyPostsContainer = () => {
 
     // let state = props.store.getState()
@@ -36,5 +37,31 @@ const MyPostsContainer = () => {
         </StoreContext.Consumer>
     )
 }
+
+*/
+
+let mapStateToProps = (state) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: () => {
+            dispatch(addPostCreator())
+        },
+        onPostChange: (text) => {
+            let action = updateNewPostTextCreator(text)
+            dispatch(action)
+            // частіше пишуть в одну строку, бо так коротше,
+            // але тут показано, що ми діспатчим просто 
+            //action, a action - це просто об'єкт
+        }
+    }
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
 export default MyPostsContainer

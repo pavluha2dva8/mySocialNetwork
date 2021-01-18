@@ -5,7 +5,7 @@ import App from './App';
 import store from './redux/redux-store'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Router } from 'react-router-dom';
-import { Provider } from './StoreContext'
+import { Provider } from 'react-redux'
 // import { addMessage, addPost, updateNewMessageText, updateNewPostText } from './redux/state'
 
 

@@ -1,33 +1,37 @@
- import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import store from './redux/redux-store'
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Router } from 'react-router-dom';
+import { Provider } from './StoreContext'
 // import { addMessage, addPost, updateNewMessageText, updateNewPostText } from './redux/state'
 
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = ( ) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state}
-            store={store}
-                dispatch={store.dispatch.bind(store)}
+            <Provider store={store}>
+                <App
+                // state={state}
+                // store={store}
+                // dispatch={store.dispatch.bind(store)}
                 // addPost={store.addPost.bind(store)}
                 // updateNewPostText={store.updateNewPostText.bind(store)}
                 // addMessage={store.addMessage.bind(store)}
                 // updateNewMessageText={store.updateNewMessageText.bind(store)}
-            />
+                />
+            </Provider>
         </BrowserRouter>, document.getElementById('root')
     );
 }
 
-rerenderEntireTree(store.getState())
+rerenderEntireTree(/* store.getState() */)
 
-store.subscribe( () =>{
-    let state = store.getState()
-    rerenderEntireTree(state)
+store.subscribe(() => {
+    //let state = store.getState()
+    rerenderEntireTree(/*state*/)
 })
 
 reportWebVitals();

@@ -8,8 +8,10 @@ import { BrowserRouter, Route, Router } from 'react-router-dom';
 import { Provider } from 'react-redux'
 // import { addMessage, addPost, updateNewMessageText, updateNewPostText } from './redux/state'
 
-
-let rerenderEntireTree = ( ) => {
+// також убираємо цю отрісовку, бо ми робимо її
+// тепер 1 раз, а потім connect буде робить
+// перерісовку локально
+// let rerenderEntireTree = ( ) => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -25,15 +27,18 @@ let rerenderEntireTree = ( ) => {
             </Provider>
         </BrowserRouter>, document.getElementById('root')
     );
-}
+//}
 
-rerenderEntireTree(/* store.getState() */)
+// rerenderEntireTree(/* store.getState() */)
 
+/* 
+ми убрали перерісовку всього дерева,
+бо connect робить її внутрі локально для кожного компонента
 store.subscribe(() => {
     //let state = store.getState()
-    rerenderEntireTree(/*state*/)
+    rerenderEntireTree( *state* )
 })
-
+*/
 reportWebVitals();
 
 // If you want to start measuring performance in your app, pass a function

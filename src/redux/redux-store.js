@@ -16,4 +16,6 @@ let reducers = combineReducers({
 // 3 таких свойства profilePage: profileReducer, dialogsPage: dialogsReducer ітд...
 let store = createStore(reducers)
 
+window.store = store
+
 export default store

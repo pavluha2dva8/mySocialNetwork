@@ -25,26 +25,36 @@ let initialState = {
 const dialogsReducer = (state = initialState, action) => {
 
 
-
+    // let stateCopy тепер ця змінна не потрібна, в кейсах ми повертаємо
+    // новий обєкт відразу
     switch (action.type) {
         case ADD_MESSAGE: {
-            let stateCopy = { ...state }
-            stateCopy.messages = [...state.messages]
-
             let newMessage = {
                 id: 6,
                 message: state.newMessageText,
                 image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg'
             }
-            stateCopy.messages.push(newMessage)
-            stateCopy.newMessageText = ''
-            return stateCopy
+            return {
+                ...state,
+                messages: [...state.messages, newMessage], // создаєм новий масив, зліва закидуємо старі елементи, а справа добавляємо новий
+                newMessageText: ''
+            }
+            // stateCopy.messages = [...state.messages] можемо переписать як зверху
+
+            // stateCopy.messages.push(newMessage) зараз метод push майже не використовується
+            // тому ми просто копіюємо значення масив і в кінець добавляємо нове значення
+            // messages: [...state.messages, newMessage]
+
+            // stateCopy.newMessageText = ''
+
         }
         case UPDATE_NEW_MESSAGE_TEXT: {
-            let stateCopy = { ...state }
-
-            stateCopy.newMessageText = action.newText
-            return stateCopy
+            return {
+                ...state,
+                newMessageText: action.newText
+            }
+            // stateCopy.newMessageText = action.newText замість такого запису
+            // тепер просто переписуємо як зверху.
         }
         default:
             return state

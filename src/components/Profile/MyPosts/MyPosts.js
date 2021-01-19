@@ -10,7 +10,8 @@ const MyPosts = (props) => {
     ]
     */
 
-   let postsElements = props.posts.map(post => <Post message={post.message} likeCount={post.likeCount} />)
+    let postsElements = props.profilePage.posts.map(post => <Post message={post.message} likeCount={post.likeCount} />)
+    let newPostText = props.profilePage.newPostText
 
     let newPostElement = React.createRef()
 
@@ -28,8 +29,8 @@ const MyPosts = (props) => {
             <h3>Posts</h3>
             <div>
                 <textarea onChange={onPostChange} ref={newPostElement}
-                    placeholder="What's on your mind?" 
-                    value={props.newPostText} />
+                    placeholder="What's on your mind?"
+                    value={newPostText} />
             </div>
             <div>
                 <button onClick={onAddPost}>Post</button>

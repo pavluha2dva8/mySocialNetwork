@@ -42,8 +42,9 @@ const MyPostsContainer = () => {
 
 let mapStateToProps = (state) => {
     return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        profilePage: state.profilePage
+        // posts: state.profilePage.posts,
+        // newPostText: state.profilePage.newPostText
     }
 }
 

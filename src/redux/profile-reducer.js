@@ -18,24 +18,26 @@ const profileReducer = (state = initialState, action) => {
     // тут ми создали копію стейта і масива,
     //  а потім запушили туда нові значення
     // Щоб connect зрівняв старий стейт з Copy'єю
+
+    // stateCopy замінили просто return {}
     switch (action.type) {
         case ADD_POST: {
-            let stateCopy = { ...state }
-            stateCopy.posts = [...state.posts]
             let newPost = {
                 id: 3,
                 message: state.newPostText,
                 likeCount: '\u2661 0'
             }
-
-            stateCopy.posts.push(newPost)
-            stateCopy.newPostText = ''
-            return stateCopy
+            return { 
+                ...state,
+                posts: [ ...state.posts, newPost],
+                newPostText: ''
+             }
         }
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = { ...state }
-            stateCopy.newPostText = action.newText
-            return stateCopy
+            return { 
+                ...state,
+                newPostText: action.newText
+            }
         }
         default:
             return state

@@ -8,7 +8,10 @@ let initialState = {
         // {id: 2, followed: true, photo: 'https://99px.ru/sstorage/1/2018/09/image_12609180803112950164.jpg', fullName: 'Valeria S.', status: 'Hi 2 all', location: {country: 'USA', city: 'New York'}},
         // {id: 3, followed: false, photo: 'https://99px.ru/sstorage/1/2018/09/image_12609180803112950164.jpg', fullName: 'Dimich K.', status: 'I\'m ok', location: {country: 'Belarus', city: 'Minsk'}},
         // {id: 4, followed: false, photo: 'https://99px.ru/sstorage/1/2018/09/image_12609180803112950164.jpg', fullName: 'Pavel K.', status: 'lf a job Front end', location: {country: 'Ukraine', city: 'Kyiv'}}
-    ]
+    ],
+    pageSize: 5,
+    totalUsersCount: 20,
+    currentPage: 8
 }
 
 const usersReducer = (state = initialState, action) => {

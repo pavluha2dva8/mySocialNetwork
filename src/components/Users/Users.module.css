@@ -29,3 +29,6 @@
     display: block;
     width: 80px;
 }
+.selectedPage {
+    font-weight: bold;
+}

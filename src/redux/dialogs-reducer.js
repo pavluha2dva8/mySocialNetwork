@@ -6,18 +6,18 @@ const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 // по умолчанію він буде (state = initialState, action)
 let initialState = {
     dialogs: [
-        { id: 1, name: 'Pavl', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
-        { id: 2, name: 'Valeria', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
-        { id: 3, name: 'Dimich', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
-        { id: 4, name: 'Someone', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
-        { id: 5, name: 'Pink Panther', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' }
+        { id: 1, name: 'Pavl', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
+        { id: 2, name: 'Valeria', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
+        { id: 3, name: 'Dimich', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
+        { id: 4, name: 'Someone', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
+        { id: 5, name: 'Pink Panther', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' }
     ],
     messages: [
-        { id: 1, message: 'Hi', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
-        { id: 2, message: 'H0i', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
-        { id: 3, message: 'HiHo', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
-        { id: 4, message: 'HiHi', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' },
-        { id: 5, message: 'HiHo HiHiHo', image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg' }
+        { id: 1, message: 'Hi', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
+        { id: 2, message: 'H0i', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
+        { id: 3, message: 'HiHo', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
+        { id: 4, message: 'HiHi', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
+        { id: 5, message: 'HiHo HiHiHo', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' }
     ],
     newMessageText: ''
 }
@@ -32,7 +32,7 @@ const dialogsReducer = (state = initialState, action) => {
             let newMessage = {
                 id: 6,
                 message: state.newMessageText,
-                image: 'https://i1.sndcdn.com/avatars-000498469299-0h7lzj-t500x500.jpg'
+                image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg'
             }
             return {
                 ...state,

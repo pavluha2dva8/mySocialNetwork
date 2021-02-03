@@ -1,63 +1,48 @@
-import * as axios from 'axios'
 import React from 'react'
 import style from './Users.module.css'
 import userPhoto from '../../assets/images/anonymous.jpg'
 
-class Users extends React.Component {
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.setTotalUsersCount(response.data.totalCount)
-        })
-    }
-    // e - класичний оброботчик собитія event
-    onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items)
-        })
-    }
-    render() {
+const Users = (props) => {
 
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-        console.log(pagesCount)
-        let pages = []
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-        console.log(pages)
-        return (
-            <div>
-                <h2>Users</h2>
-                { pages.map(p => {
-                    return <span className={`${style.pageSelector} ${this.props.currentPage === p && style.selectedPage}`}
-                        onClick={() => { this.onPageChanged(p) }}>{p}</span>
-                })}
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    console.log(pagesCount)
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
+    }
+    console.log(pages)
 
-                {
-                    this.props.users.map(u => <div key={u.id} className={style.container}>
+    return (
+        <div>
+            <h2>Users</h2>
+            { pages.map(p => {
+                return <span className={`${style.pageSelector} ${props.currentPage === p && style.selectedPage}`}
+                    onClick={() => { props.onPageChanged(p) }}>{p}</span>
+            })}
+
+            {
+                props.users.map(u => <div key={u.id} className={style.container}>
+                    <div>
+                        <img className={style.img}
+                            src={u.photos.small || userPhoto} alt="" />
                         <div>
-                            <img className={style.img}
-                                src={u.photos.small || userPhoto} alt="" />
-                            <div>
-                                {
-                                    u.followed
-                                        ? <button onClick={() => { this.props.unfollow(u.id) }} className={style.button}>Unfollow</button>
-                                        : <button onClick={() => { this.props.follow(u.id) }} className={style.button}>Follow</button>
-                                }
-                            </div>
+                            {
+                                u.followed
+                                    ? <button onClick={() => { props.unfollow(u.id) }} className={style.button}>Unfollow</button>
+                                    : <button onClick={() => { props.follow(u.id) }} className={style.button}>Follow</button>
+                            }
                         </div>
-                        <div className={style.info}>
-                            <div className={style.userName}>{u.name}</div>
-                            <div className={style.location}>{'u.location.country'}</div>
-                            <div className={style.location}>{'u.location.city'}</div>
-                            <div className={style.status}>{'u.status'}</div>
-                        </div>
-                    </div>)
-                }
-            </div>
-        )
-    }
+                    </div>
+                    <div className={style.info}>
+                        <div className={style.userName}>{u.name}</div>
+                        <div className={style.location}>{'u.location.country'}</div>
+                        <div className={style.location}>{'u.location.city'}</div>
+                        <div className={style.status}>{'u.status'}</div>
+                    </div>
+                </div>)
+            }
+        </div>
+    )
 }
 
 export default Users

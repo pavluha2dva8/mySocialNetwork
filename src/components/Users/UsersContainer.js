@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Users from "./Users"
-import { followAC, setUsersAC, unfollowAC } from '../../redux/users-reducer'
+import { followAC, setUsersAC, unfollowAC, setCurrentPageAC, setTotalUsersCountAC } from '../../redux/users-reducer'
 
 // mapStateToProps - ф-я яка приймає глобально весь стейт і повертає обєкт з
 // куском стейта, який буде потрібний компоненту
@@ -23,6 +23,12 @@ let mapDispatchToProps = (dispatch) => {
         },
         setUsers: (usersId) => {
             dispatch(setUsersAC(usersId))
+        },
+        setCurrentPage: (pageNumber) => {
+            dispatch(setCurrentPageAC(pageNumber))
+        },
+        setTotalUsersCount: (totalCount) => {
+            dispatch(setTotalUsersCountAC(totalCount))
         }
     }
 

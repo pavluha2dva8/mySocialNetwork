@@ -1,6 +1,8 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 
 let initialState = {
     users: [
@@ -9,9 +11,9 @@ let initialState = {
         // {id: 3, followed: false, photo: 'https://99px.ru/sstorage/1/2018/09/image_12609180803112950164.jpg', fullName: 'Dimich K.', status: 'I\'m ok', location: {country: 'Belarus', city: 'Minsk'}},
         // {id: 4, followed: false, photo: 'https://99px.ru/sstorage/1/2018/09/image_12609180803112950164.jpg', fullName: 'Pavel K.', status: 'lf a job Front end', location: {country: 'Ukraine', city: 'Kyiv'}}
     ],
-    pageSize: 5,
-    totalUsersCount: 20,
-    currentPage: 8
+    pageSize: 100,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -40,7 +42,13 @@ const usersReducer = (state = initialState, action) => {
             } 
         }
         case SET_USERS: {
-            return { ...state, users: [ ...state.users, ...action.users] } // так як юзерів буде не 1, а цілий масив, то до action.users додаємо спред оператор ..., щоб склеїти 2 масива
+            return { ...state, users: action.users } // так як юзерів буде не 1, а цілий масив, то до action.users додаємо спред оператор ..., щоб склеїти 2 масива
+        }
+        case SET_CURRENT_PAGE: {
+            return { ...state, currentPage: action.currentPage } // так як юзерів буде не 1, а цілий масив, то до action.users додаємо спред оператор ..., щоб склеїти 2 масива
+        }
+        case SET_TOTAL_USERS_COUNT: {
+            return { ...state, totalUsersCount: action.count } // так як юзерів буде не 1, а цілий масив, то до action.users додаємо спред оператор ..., щоб склеїти 2 масива
         }
         default:
             return state
@@ -50,5 +58,7 @@ const usersReducer = (state = initialState, action) => {
 export const followAC = (userId) => ({type: FOLLOW, userId})
 export const unfollowAC = (userId) => ({type: UNFOLLOW, userId})
 export const setUsersAC = (users) => ({type: SET_USERS, users})
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
+export const setTotalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
 
 export default usersReducer

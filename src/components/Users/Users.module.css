@@ -31,7 +31,10 @@
 }
 .pageSelector {
     cursor: pointer;
+    margin: 2px;
 }
 .selectedPage {
     font-weight: bold;
+    
 }
+  

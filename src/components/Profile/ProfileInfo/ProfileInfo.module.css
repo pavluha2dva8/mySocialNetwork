@@ -1,9 +1,41 @@
-.content__wallpaper img{
-    width: 100%;
-    height: 240px;
-}
-
-.content__avatar img {
+.profile_avatar {
+    display: inline-block;
+    margin-top: 40px;
+    margin-left: 15px;
     width: 180px;
+    height: 180px;
     border-radius: 100px;
+}
+.profile {
+    background: linear-gradient(0.15turn, #173045, #17445f, #1b3448);
+    border: 3px solid #333;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+.profile_bg {
+    height: 150px;
+    margin-bottom: 70px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: rgb(2,8,83);
+    background: linear-gradient(152deg, rgba(2,8,83,0.9587185215883228) 8%, rgba(78,9,121,0.7990546560421043) 59%, rgba(0,212,255,1) 100%);
+}
+.profile_info {
+    display: flex;
+    justify-content: space-between;
+}
+.info {
+    padding-left: 15px;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.name {
+    font-size: 28px;
+    font-weight: bold;
+}
+.contacts {
+    padding-right: 15px;
+    color: #fff;
+    font-size: 18px;
 }

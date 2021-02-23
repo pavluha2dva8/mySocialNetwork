@@ -1,7 +1,7 @@
 .nav {
     grid-area: nav;
-
-    border: 5px solid #333;
+    background: linear-gradient(0.15turn, #173045, #17445f, #1b3448);
+    border: 3px solid #333;
 }
 .nav__list {
     list-style-type: none;

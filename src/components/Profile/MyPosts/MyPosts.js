@@ -25,15 +25,13 @@ const MyPosts = (props) => {
     }
 
     return (
-        <div>
+        <div className={style.posts_container}>
             <h3>Posts</h3>
-            <div>
+            <div className={style.post_input}>
                 <textarea onChange={onPostChange} ref={newPostElement}
                     placeholder="What's on your mind?"
                     value={newPostText} />
-            </div>
-            <div>
-                <button onClick={onAddPost}>Post</button>
+                    <button onClick={onAddPost}>Post</button>
             </div>
             <div className={style.posts}>
                 {postsElements}

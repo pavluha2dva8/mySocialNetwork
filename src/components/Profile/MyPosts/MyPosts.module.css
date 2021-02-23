@@ -1,3 +1,21 @@
+.posts_container {
+    background: linear-gradient(0.15turn, #173045, #17445f, #1b3448);
+    border: 3px solid #333;
+    border-radius: 15px;
+}
+h3 {
+    color: #fff;
+    margin-left: 15px;
+
+}
+.post_input {
+    display: flex;
+    margin: 0 15px;
+}
+.post_input textarea {
+    width: 100%;
+}
 .posts {
     margin-top: 10px;
+    margin-left: 15px;
 }

@@ -7,3 +7,11 @@
 .header img {
     width: 90px;
 }
+
+.login {
+    float: right;
+    color: #fff;
+}
+.login a {
+    color: #fff;
+}

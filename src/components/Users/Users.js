@@ -2,16 +2,16 @@ import React from 'react'
 import style from './Users.module.css'
 import userPhoto from '../../assets/images/anonymous.jpg'
 import { NavLink } from 'react-router-dom'
+import * as axios from 'axios'
+import { usersAPI } from '../../api/api'
 
 const Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    console.log(pagesCount)
+    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= /*pagesCount*/10; i++) {
         pages.push(i)
     }
-    console.log(pages)
 
     return (
         <div>
@@ -30,8 +30,27 @@ const Users = (props) => {
                         <div>
                             {
                                 u.followed
-                                    ? <button onClick={() => { props.unfollow(u.id) }} className={style.button}>Unfollow</button>
-                                    : <button onClick={() => { props.follow(u.id) }} className={style.button}>Follow</button>
+                                    ? <button onClick={() => {
+
+
+                                        usersAPI.unFollow(u.id)
+                                        .then(data => {
+                                                if (data.resultCode === 0) {
+                                                    props.unfollow(u.id)
+                                                }
+                                            })
+
+
+                                    }} className={style.button}>Unfollow</button>
+                                    : <button onClick={() => {
+
+                                        usersAPI.follow(u.id)
+                                            .then(data => {
+                                                if (data.resultCode === 0) {
+                                                    props.follow(u.id)
+                                                }
+                                            })
+                                    }} className={style.button}>Follow</button>
                             }
                         </div>
                     </div>

@@ -11,6 +11,7 @@ const instance = axios.create({
     }
 })
 
+// це про юзерів, тому в окремий обєкт
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
@@ -28,6 +29,24 @@ export const usersAPI = {
 
     unfollow(userId) {
         return instance.delete(`follow/${userId}`)
+            .then(response => {
+                return response.data
+            })
+    },
+    // getProfilePage
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`)
+            .then(response => {
+                return response.data
+            })
+    }
+}
+
+// це про аутентифікацію, тому создав новий обєкт зі своїм методом
+export const authAPI = {
+    // authMe - header login
+    authMe() {
+        return instance.get(`auth/me`)
             .then(response => {
                 return response.data
             })

@@ -101,7 +101,7 @@ export const follow = (userId) => { // followThunkCreator
 
     return (dispatch) => {
         dispatch(toggleFollowingProgress(true, userId))
-        usersAPI.follow(userId)
+        usersAPI.followSuccess(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(followSuccess(userId))

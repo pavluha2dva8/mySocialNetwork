@@ -1,3 +1,5 @@
+import { usersAPI } from '../api/api'
+
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const SET_USER_PROFILE = 'SET-USER-PROFILE'
@@ -29,14 +31,14 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPostText,
                 likeCount: '\u2661 0'
             }
-            return { 
+            return {
                 ...state,
-                posts: [ ...state.posts, newPost],
+                posts: [...state.posts, newPost],
                 newPostText: ''
-             }
+            }
         }
         case UPDATE_NEW_POST_TEXT: {
-            return { 
+            return {
                 ...state,
                 newPostText: action.newText
             }
@@ -55,5 +57,14 @@ export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const updateNewPostTextCreator = (text) => (
     { type: UPDATE_NEW_POST_TEXT, newText: text }
 )
+
+// thunkCreator
+export const getUserProfile = (userId) => (dispatch) => {
+    usersAPI.getProfile(userId)
+        .then(data => {
+            dispatch(setUserProfile(data))
+        })
+}
+
 
 export default profileReducer

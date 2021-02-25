@@ -1,10 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { follow, setUsers, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress } from '../../redux/users-reducer'
-import * as axios from 'axios'
+import { follow, unfollow, toggleFollowingProgress, getUsers } from '../../redux/users-reducer'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader'
-import { usersAPI } from '../../api/api'
 
 // класовый компонент ми перенесли з отдельного файла
 // в файл з контейнерами
@@ -14,24 +12,30 @@ import { usersAPI } from '../../api/api'
 // class - компонент, який буде робити запроси до серверного API
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsFetching(true)
 
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalCount)
-            })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        // Раніше компонент визивав стільки кода, щоб відправити запрос
+        // і отримати данні
+        // this.props.toggleIsFetching(true)
+
+        // usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+        //     .then(data => {
+        //         this.props.toggleIsFetching(false)
+        //         this.props.setUsers(data.items)
+        //         this.props.setTotalUsersCount(data.totalCount)
+        //     })
     }
     onPageChanged = (pageNumber) => {
-        this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(pageNumber)
+        this.props.getUsers(pageNumber, this.props.pageSize)
+        // this.props.getUsers(pageNumber, this.props.pageSize)
+        // this.props.toggleIsFetching(true)
+        // this.props.setCurrentPage(pageNumber)
 
-        usersAPI.getUsers(pageNumber, this.props.pageSize)
-            .then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-            })
+        // usersAPI.getUsers(pageNumber, this.props.pageSize)
+        //     .then(data => {
+        //         this.props.toggleIsFetching(false)
+        //         this.props.setUsers(data.items)
+        //     })
     }
     render() {
         return <>
@@ -43,7 +47,6 @@ class UsersContainer extends React.Component {
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
                 users={this.props.users}
-                toggleFollowingProgress={this.props.toggleFollowingProgress}
                 followingInProgress={this.props.followingInProgress}
             />
         </>
@@ -90,9 +93,5 @@ let mapDispatchToProps = (dispatch) => {
 */
 // Було так як зверху, а тепер маленький лайф-фак, ми можемо в ф-ю конект
 // передати обєкт з екшн кріейторами
-export default connect(mapStateToProps,
-    {
-        follow, unfollow, setUsers,
-        setCurrentPage, setTotalUsersCount,
-        toggleIsFetching, toggleFollowingProgress
-    })(UsersContainer)
+export default connect(mapStateToProps, 
+    { follow, unfollow, toggleFollowingProgress, getUsers })(UsersContainer)

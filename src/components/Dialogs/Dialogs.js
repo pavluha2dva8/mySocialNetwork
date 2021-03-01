@@ -2,6 +2,7 @@ import React from 'react'
 import style from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogsItem'
+import { Redirect } from 'react-router-dom'
 
 const Dialogs = (props) => {
 
@@ -24,6 +25,10 @@ const Dialogs = (props) => {
         // props.dispatch(onMessageChangeCreator(text))
         props.updateNewMessageText(text)
     }
+
+    // читаємо флаг isAuth, щоб дізнатись чи ми залогінені
+    // якщо ні, редірект кидає на ЛОГІН, якщо тру, то отрісовує jsx
+    if (!props.isAuth) return <Redirect to={'/login'} />
 
     return (
         <div className={style.dialogs}>

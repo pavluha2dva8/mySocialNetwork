@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { follow, unfollow, toggleFollowingProgress, getUsers } from '../../redux/users-reducer'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+import { compose } from 'redux'
 
 // класовый компонент ми перенесли з отдельного файла
 // в файл з контейнерами
@@ -93,5 +95,13 @@ let mapDispatchToProps = (dispatch) => {
 */
 // Було так як зверху, а тепер маленький лайф-фак, ми можемо в ф-ю конект
 // передати обєкт з екшн кріейторами
-export default connect(mapStateToProps, 
-    { follow, unfollow, toggleFollowingProgress, getUsers })(UsersContainer)
+
+export default compose(
+    connect(mapStateToProps, 
+        { follow, unfollow, toggleFollowingProgress, getUsers }),
+    withAuthRedirect
+)(UsersContainer)
+
+// let AuthRedirectComponent = withAuthRedirect(UsersContainer)
+// export default connect(mapStateToProps, 
+//     { follow, unfollow, toggleFollowingProgress, getUsers })(AuthRedirectComponent)

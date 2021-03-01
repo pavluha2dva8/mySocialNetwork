@@ -2,6 +2,7 @@ import React from 'react'
 import Preloader from '../../common/Preloader/Preloader'
 import style from './ProfileInfo.module.css'
 import userPhoto from '../../../assets/images/anonymous.jpg'
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -19,6 +20,7 @@ const ProfileInfo = (props) => {
                     <div>About me: {props.profile.aboutMe}</div>
                     <div>LF a job: {String(props.profile.lookingForAJob)}</div>
                     <div>Job desc: {props.profile.lookingForAJobDescription}</div>
+                    <ProfileStatus status={'STATUS: DOUBLE CLICK ON ME TO CHANGE'} />
                 </div>
                 <div className={style.contacts}>
                     <div>{props.profile.contacts.facebook}</div>

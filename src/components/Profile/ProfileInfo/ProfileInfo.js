@@ -20,7 +20,7 @@ const ProfileInfo = (props) => {
                     <div>About me: {props.profile.aboutMe}</div>
                     <div>LF a job: {String(props.profile.lookingForAJob)}</div>
                     <div>Job desc: {props.profile.lookingForAJobDescription}</div>
-                    <ProfileStatus status={'STATUS: DOUBLE CLICK ON ME TO CHANGE'} />
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
                 </div>
                 <div className={style.contacts}>
                     <div>{props.profile.contacts.facebook}</div>

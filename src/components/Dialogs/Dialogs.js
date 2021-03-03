@@ -3,28 +3,34 @@ import style from './Dialogs.module.css'
 import Message from './Message/Message'
 import DialogItem from './DialogItem/DialogsItem'
 import { Redirect } from 'react-router-dom'
+import { Field, reduxForm } from "redux-form"
 
 const Dialogs = (props) => {
 
     let dialogsElements = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} name={dialog.name} id={dialog.id} image={dialog.image} />)
     let messagesElements = props.dialogsPage.messages.map(messages => <Message key={messages.id} message={messages.message} image={messages.image} />)
-    let newMessageText = props.dialogsPage.newMessageText
+    // let newMessageText = props.dialogsPage.newMessageText
 
-
-    // let newMessageElement = React.createRef()
-
-    let onSendMessageClick = () => {
-        // props.dispatch(sendMessageCreator())
-        props.sendMessage()
+    let addNewMessage = (values) => {
+        props.sendMessage(values.newMessageBody)
     }
 
-    let onMessageChange = (event) => {
-        // let text = newMessageElement.current.value
-        let text = event.target.value // value можна получить так, або так як зверху
-        // або в MyPosts за допомогою React.createRef()
-        // props.dispatch(onMessageChangeCreator(text))
-        props.updateNewMessageText(text)
-    }
+    /*
+      // let newMessageElement = React.createRef()
+    
+        let onSendMessageClick = () => {
+            // props.dispatch(sendMessageCreator())
+            props.sendMessage()
+        }
+    
+        let onMessageChange = (event) => {
+            // let text = newMessageElement.current.value
+            let text = event.target.value // value можна получить так, або так як зверху
+            // або в MyPosts за допомогою React.createRef()
+            // props.dispatch(onMessageChangeCreator(text))
+            props.updateNewMessageText(text)
+        }
+    */
 
     // читаємо флаг isAuth, щоб дізнатись чи ми залогінені
     // якщо ні, редірект кидає на ЛОГІН, якщо тру, то отрісовує jsx
@@ -37,16 +43,31 @@ const Dialogs = (props) => {
             </div>
             <div className={style.messages}>
                 {messagesElements}
-                <div className={style.dialogs__textarea}>
+                <AddMessageReduxForm onSubmit={addNewMessage} />
+                {/* <div className={style.dialogs__textarea}>
                     <textarea onChange={onMessageChange}
                         // ref={newMessageElement}
                         placeholder='Aa'
                         value={newMessageText} />
                     <button onClick={onSendMessageClick}>Send</button>
-                </div>
+                </div> */}
             </div>
         </div>
     )
 }
+
+const AddMessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div className={style.dialogs__textarea}>
+                <Field component={'textarea'} name={'newMessageBody'} placeholder='Aa' />
+                <button>Send</button>
+            </div>
+        </form>
+    )
+}
+
+const AddMessageReduxForm = reduxForm({ form: 'dialogAddMessageForm' })(AddMessageForm)
+
 
 export default Dialogs

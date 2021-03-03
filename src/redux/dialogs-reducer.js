@@ -1,5 +1,5 @@
 const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+// const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
 // одноразовий обєкт для стартової ініціалізації
 // якщо в dialogsReducer не прийде state
@@ -18,8 +18,7 @@ let initialState = {
         { id: 3, message: 'HiHo', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
         { id: 4, message: 'HiHi', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' },
         { id: 5, message: 'HiHo HiHiHo', image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg' }
-    ],
-    newMessageText: ''
+    ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -31,13 +30,12 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE: {
             let newMessage = {
                 id: 6,
-                message: state.newMessageText,
+                message: action.newMessageBody,
                 image: 'https://i.pinimg.com/originals/de/a2/12/dea212864ca4463b67cd5687a3dc1a8d.jpg'
             }
             return {
                 ...state,
                 messages: [...state.messages, newMessage], // создаєм новий масив, зліва закидуємо старі елементи, а справа добавляємо новий
-                newMessageText: ''
             }
             // stateCopy.messages = [...state.messages] можемо переписать як зверху
 
@@ -48,23 +46,23 @@ const dialogsReducer = (state = initialState, action) => {
             // stateCopy.newMessageText = ''
 
         }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            return {
-                ...state,
-                newMessageText: action.newText
-            }
-            // stateCopy.newMessageText = action.newText замість такого запису
-            // тепер просто переписуємо як зверху.
-        }
+        // case UPDATE_NEW_MESSAGE_TEXT: {
+        //     return {
+        //         ...state,
+        //         newMessageText: action.newText
+        //     }
+        //     // stateCopy.newMessageText = action.newText замість такого запису
+        //     // тепер просто переписуємо як зверху.
+        // }
         default:
             return state
     }
 }
 
 // actionCreator - type: ...
-export const sendMessageCreator = () => ({ type: ADD_MESSAGE })
-export const onMessageChangeCreator = (text) => (
-    { type: UPDATE_NEW_MESSAGE_TEXT, newText: text }
-)
+export const sendMessageCreator = (newMessageBody) => ({ type: ADD_MESSAGE, newMessageBody })
+// export const onMessageChangeCreator = (text) => (
+//     { type: UPDATE_NEW_MESSAGE_TEXT, newText: text }
+// )
 
 export default dialogsReducer

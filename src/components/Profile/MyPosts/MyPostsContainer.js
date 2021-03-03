@@ -1,7 +1,6 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import MyPosts from './MyPosts'
-import { addPostCreator, updateNewPostTextCreator } from '../../../redux/profile-reducer'
+import { addPostCreator } from '../../../redux/profile-reducer'
 
 /* 
 const MyPostsContainer = () => {
@@ -50,16 +49,16 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        addPost: () => {
-            dispatch(addPostCreator())
-        },
-        onPostChange: (text) => {
-            let action = updateNewPostTextCreator(text)
-            dispatch(action)
-            // частіше пишуть в одну строку, бо так коротше,
-            // але тут показано, що ми діспатчим просто 
-            //action, a action - це просто об'єкт
+        addPost: (newPostBody) => {
+            dispatch(addPostCreator(newPostBody))
         }
+        // onPostChange: (text) => {
+        //     let action = updateNewPostTextCreator(text)
+        //     dispatch(action)
+        //     // частіше пишуть в одну строку, бо так коротше,
+        //     // але тут показано, що ми діспатчим просто 
+        //     //action, a action - це просто об'єкт
+        // }
     }
 }
 

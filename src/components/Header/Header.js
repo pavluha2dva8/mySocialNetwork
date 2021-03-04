@@ -7,7 +7,8 @@ const Header = (props) => {
         <img src='https://upload.wikimedia.org/wikipedia/commons/c/c1/Steam_Logo.png' alt='' />
 
         <div className={style.login}>
-            {props.isAuth ? props.login
+            {props.isAuth
+                ? <div>{props.login} <button onClick={props.logout}>Log out</button></div>
                 : <NavLink to={'/login'}>Login</NavLink>}
         </div>
     </header>

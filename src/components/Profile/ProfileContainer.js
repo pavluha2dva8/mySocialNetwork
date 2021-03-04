@@ -10,7 +10,9 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) userId = 2
+        if (!userId) {
+            userId = this.props.authorizedUserId
+        }
 
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -25,13 +27,15 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 })
 
 // В другому визові вставляємо цільовий компонент, з якого починається двіжуха
 // Обработчики чіпляємо знизу вверх
 export default compose(
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus}), // #3
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }), // #3
     withRouter, // #2
     withAuthRedirect // #1
 )(ProfileContainer)

@@ -8,3 +8,10 @@
 {
     color: red;
 }
+
+.formSummaryError {
+    display: inline-block;
+    border: 2px solid red;
+    padding: 3px;
+    color: red;
+}

@@ -8,13 +8,13 @@ h3 {
     margin-left: 15px;
 
 }
-.post_input {
+/* .post_input {
     display: flex;
     margin: 0 15px;
-}
-.post_input textarea {
+} */
+/* .post_input_textarea {
     width: 100%;
-}
+} */
 .posts {
     margin-top: 10px;
     margin-left: 15px;

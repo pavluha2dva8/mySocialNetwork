@@ -84,12 +84,13 @@ export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_F
 // thunkCreator - в парам. приймає данні, які потрібні санкі і
 // повертає саму санку
 // В redux-store потрібно дописати до store - applyMiddleware
-export const getUsers = (currentPage, pageSize) => { // getUsersThunkCreator
+export const requestUsers = (page, pageSize) => { // getUsersThunkCreator
 
     return (dispatch) => {
         dispatch(toggleIsFetching(true))
+        dispatch(setCurrentPage(page))
 
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
+        usersAPI.getUsers(page, pageSize).then(data => {
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(data.items))
             dispatch(setTotalUsersCount(data.totalCount))

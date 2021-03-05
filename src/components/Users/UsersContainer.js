@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { follow, unfollow, toggleFollowingProgress, getUsers } from '../../redux/users-reducer'
+import { follow, unfollow, toggleFollowingProgress, requestUsers } from '../../redux/users-reducer'
 import Users from './Users'
 import Preloader from '../common/Preloader/Preloader'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { compose } from 'redux'
+import { getUsers, getPageSize, getTotalUsersCount, getCurrentPage, getIsFetching, getFollowingInProgress } from '../../redux/users-selectors'
 
 // класовый компонент ми перенесли з отдельного файла
 // в файл з контейнерами
@@ -15,12 +16,12 @@ import { compose } from 'redux'
 class UsersContainer extends React.Component {
     componentDidMount() {
 
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.requestUsers(this.props.currentPage, this.props.pageSize)
         // Раніше компонент визивав стільки кода, щоб відправити запрос
         // і отримати данні
         // this.props.toggleIsFetching(true)
 
-        // usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+        // usersAPI.requestUsers(this.props.currentPage, this.props.pageSize)
         //     .then(data => {
         //         this.props.toggleIsFetching(false)
         //         this.props.setUsers(data.items)
@@ -28,12 +29,12 @@ class UsersContainer extends React.Component {
         //     })
     }
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
-        // this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.requestUsers(pageNumber, this.props.pageSize)
+        // this.props.requestUsers(pageNumber, this.props.pageSize)
         // this.props.toggleIsFetching(true)
         // this.props.setCurrentPage(pageNumber)
 
-        // usersAPI.getUsers(pageNumber, this.props.pageSize)
+        // usersAPI.requestUsers(pageNumber, this.props.pageSize)
         //     .then(data => {
         //         this.props.toggleIsFetching(false)
         //         this.props.setUsers(data.items)
@@ -58,16 +59,28 @@ class UsersContainer extends React.Component {
 // mapStateToProps - ф-я яка приймає глобально весь стейт і повертає обєкт з
 // куском стейта, який буде потрібний компоненту
 
+// === Тут пока закоментим
+// let mapStateToProps = (state) => {
+//     return {
+//         users: state.usersPage.users,
+//         pageSize: state.usersPage.pageSize,
+//         totalUsersCount: state.usersPage.totalUsersCount,
+//         currentPage: state.usersPage.currentPage,
+//         isFetching: state.usersPage.isFetching,
+//         followingInProgress: state.usersPage.followingInProgress
+//     }
+// }
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
+
 /*
 let mapDispatchToProps = (dispatch) => {
     return {
@@ -98,7 +111,7 @@ let mapDispatchToProps = (dispatch) => {
 
 export default compose(
     connect(mapStateToProps, 
-        { follow, unfollow, toggleFollowingProgress, getUsers }),
+        { follow, unfollow, toggleFollowingProgress, requestUsers }),
     withAuthRedirect
 )(UsersContainer)
 

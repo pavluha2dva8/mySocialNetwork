@@ -6,6 +6,7 @@ import sidebarReducer from "./sidebar-reducer"
 import usersReducer from './users-reducer'
 import thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
+import appReducer from './app-reducer'
 
 // комбайним reducer'и
 let reducers = combineReducers({
@@ -14,7 +15,8 @@ let reducers = combineReducers({
     sidebar: sidebarReducer, // є свойство sidebar, і за ньго відповідає sidebarReducer ітд...
     usersPage: usersReducer,
     auth: authReducer, // відповідає за аутентифікацію
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 })
 // після того як закомбайнили reducer'и,
 // ми просто передаємо їх store'у
